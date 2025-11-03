@@ -1,13 +1,13 @@
 NAME =  program
 SOURCES = Fixed.cpp main.cpp
-FLAGS = g++ -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98
 OBJ = $(SOURCES:.cpp=.o)
 HEADER = Fixed.hpp
-%.o: %.cpp
-	$(FLAGS) -c $< -o $@
+%.o: %.cpp $(HEADER)
+	c++ $(FLAGS) -c $< -o $@
 
-$(NAME): $(OBJ) $(HEADER)
-	$(FLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(OBJ) 
+	c++ $(FLAGS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
 

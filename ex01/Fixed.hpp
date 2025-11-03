@@ -1,20 +1,26 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 #include <iostream>
+#include <cmath>
 
 class Fixed {
 private:
     int _fixedPointValue;
     static const int _fractionalBits = 8;
-
-public:
-    Fixed(); // Default constructor
-    Fixed(const Fixed& other); // Copy constructor
-    Fixed& operator=(const Fixed& other); // Copy assignment operator
-    ~Fixed(); // Destructor
+    
+    public:
+    Fixed();                       
+    Fixed(const int value);         
+    Fixed(const float value);       
+    Fixed(const Fixed& other);     
+    ~Fixed();                       
+    
+    Fixed& operator=(const Fixed& other); 
 
     int getRawBits(void) const;
     void setRawBits(int const raw);
+    float toFloat() const;
+    int toInt() const;
 };
 
 #endif

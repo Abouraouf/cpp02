@@ -3,10 +3,10 @@ SOURCES = Fixed.cpp main.cpp
 FLAGS = -Wall -Wextra -Werror -std=c++98
 OBJ = $(SOURCES:.cpp=.o)
 HEADER = Fixed.hpp
-%.o: %.cpp
+%.o: %.cpp $(HEADER)
 	c++ $(FLAGS) -c $< -o $@
 
-$(NAME): $(OBJ) $(HEADER)
+$(NAME): $(OBJ) 
 	c++ $(FLAGS) $(OBJ) -o $(NAME)
 
 all: $(NAME)

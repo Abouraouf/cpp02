@@ -1,51 +1,51 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 #include <iostream>
+#include <cmath>
 
 class Fixed {
 private:
     int _fixedPointValue;
-    static const int _fractionalBits = 8; // what is the static means
+    static const int _fractionalBits = 8;
+    
+    public:
+    Fixed();                       
+    Fixed(const int value);         
+    Fixed(const float value);       
+    Fixed(const Fixed& other);     
+    ~Fixed();                       
+    
+    Fixed& operator=(const Fixed& other); 
 
-public:
-    Fixed(); // Default constructor
-    Fixed(const int asd); // Default constructor
-    Fixed(const float asd); // Default constructor
-    Fixed(const Fixed& other); // Copy constructor
-    ~Fixed(); // Destructor
-
-    Fixed& operator=(const Fixed& other); // Copy assignment operator
-
-    Fixed operator-(const Fixed& other) const ;
-    Fixed operator+(const Fixed& other) const ;
-    Fixed operator*(const Fixed& other) const ;
-    Fixed operator/(const Fixed& other) const ;
-    
-    
-    bool operator>(const Fixed& other);
-    bool operator<(const Fixed& other);
-    bool operator>=(const Fixed& other);
-    bool operator<=(const Fixed& other);
-    bool operator==(const Fixed& other);
-    bool operator!=(const Fixed& other);
-    float toFloat() const;
-    Fixed& operator++();
-    Fixed operator++(int); // If you returned a reference (Fixed&) like prefix, you’d return the updated object, not the original.
-    Fixed& operator--();
-    Fixed operator--(int);
-    
-    
+   
     int getRawBits(void) const;
     void setRawBits(int const raw);
+    float toFloat() const;
+    int toInt() const;
 
-    const static Fixed	&min(Fixed const &a, Fixed const &b);
-	const static Fixed	&max(Fixed const &a, Fixed const &b);
+    bool operator>(const Fixed& other) const;
+    bool operator<(const Fixed& other) const;
+    bool operator>=(const Fixed& other) const;
+    bool operator<=(const Fixed& other) const;
+    bool operator==(const Fixed& other) const;
+    bool operator!=(const Fixed& other) const;
+
+    Fixed operator+(const Fixed& other) const;
+    Fixed operator-(const Fixed& other) const;
+    Fixed operator*(const Fixed& other) const;
+    Fixed operator/(const Fixed& other) const;
+    
+    Fixed& operator++();    // Pre-increment
+    Fixed& operator--();    // Pre-decrement
+    Fixed operator++(int);  // Post-increment
+    Fixed operator--(int);  // Post-decrement
+
+    static Fixed& min(Fixed &a, Fixed &b);
+    static Fixed& max(Fixed &a, Fixed &b);
+    static const Fixed& min(Fixed const &a, Fixed const &b);
+    static const Fixed& max(Fixed const &a, Fixed const &b);
 };
 
-
-std::ostream&	operator<<(std::ostream &o, Fixed const &fixed);
-Fixed const		&min(Fixed const &a, Fixed const &b);
-Fixed const		&max(Fixed const &a, Fixed const &b);
-
+std::ostream& operator<<(std::ostream &o, Fixed const &fixed);
 
 #endif
